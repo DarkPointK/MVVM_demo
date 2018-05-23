@@ -37,9 +37,9 @@
         android:layout_marginRight="48dp"
         android:layout_marginStart="24dp"
         android:background="@color/red"
-        android:text="@string/cancel"
+        android:text="取消"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_20_sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/bt_take_pic"
         app:layout_constraintHorizontal_bias="0.068"
@@ -53,9 +53,9 @@
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:background="@color/colorAccent"
-        android:text="@string/take_pic"
+        android:text="拍照"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_20_sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

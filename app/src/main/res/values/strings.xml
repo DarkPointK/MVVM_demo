@@ -2,4 +2,8 @@
     <string name="app_name">MVVM_IV</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="iv">车牌检验</string>
+    <string name="ivc">拍照检验</string>
+    <string name="iving">车牌检验中</string>
+    <string name="ivfail">检验失败</string>
 </resources>

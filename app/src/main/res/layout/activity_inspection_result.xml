@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:orientation="vertical"
-    tools:context=".ui.other.InspectionResultActivity"
     tools:layout_editor_absoluteY="25dp">
 
     <TextView
@@ -20,7 +19,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_27_sp"
+        android:textSize="27sp"
         app:layout_constraintBottom_toTopOf="@+id/iv_status"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/text_40_sp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +55,7 @@
         android:layout_height="55dp"
         android:layout_gravity="center_horizontal"
         android:background="@color/colorAccent"
-        android:text="@string/back"
+        android:text="返回"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
