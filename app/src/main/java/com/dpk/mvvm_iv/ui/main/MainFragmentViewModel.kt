@@ -11,6 +11,8 @@ class MainFragmentViewModel : BaseObservable() {
         @Bindable get
         set(value) {
             field = value
+            if (value.isNotEmpty())
+                key.set(true)
             notifyPropertyChanged(BR.listener)
         }
     val key = ObservableBoolean(false)
