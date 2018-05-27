@@ -61,7 +61,7 @@
             android:gravity="center"
             android:text="@{vm.loading?@string/iving:@string/ivfail}"
             android:textColor="@color/white"
-            android:visibility="@{vm.issuccess?View.GONE:View.VISIBLE}"
+            visible="@{vm.loading}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
