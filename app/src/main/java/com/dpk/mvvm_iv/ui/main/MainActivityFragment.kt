@@ -29,10 +29,12 @@ class MainActivityFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //监听检验变量的变化
         binding.vm?.issuccess?.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                if (binding.vm?.issuccess?.get() != binding.vm?.DEF)
-                    mainImp.inspectionStatus(binding.vm?.ispass!!)
+                //不是默认值的话请求验车
+                if (binding.vm?.issuccess?.get()!!)
+                    mainImp.inspectionStatus(binding.vm?.ispass?.get()!!)
             }
 
         })
@@ -53,8 +55,9 @@ class MainActivityFragment : Fragment() {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        if (!hidden)
-            binding.vm?.issuccess?.set(binding.vm?.DEF!!)
+        //show时设置为默认状态
+//        if (!hidden)
+//            binding.vm?.issuccess?.set(true)
     }
 
     override fun onAttach(activity: Activity?) {
