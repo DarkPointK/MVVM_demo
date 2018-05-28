@@ -11,9 +11,6 @@ import com.dpk.mvvm_iv.model.NetBean
 import com.dpk.mvvm_iv.model.SwitchSchedulers
 
 class MainFragmentViewModel : BaseObservable() {
-    val SCUCCSE = 1
-    val FAIL = 0
-    val DEF = 2
 
     //输入的车牌号
     var listener = ""
@@ -31,8 +28,6 @@ class MainFragmentViewModel : BaseObservable() {
     //加载状态
     var loading = ObservableBoolean()
 
-    val base64 = ObservableField<NetBean.PostInspection>()
-
     //请求检验的方式
     val key = ObservableBoolean(false)
 
@@ -45,6 +40,7 @@ class MainFragmentViewModel : BaseObservable() {
         }
     }
 
+    val base64 = ObservableField<NetBean.PostInspection>()
     var getInspectionBean = ObservableField<NetBean.GetInspection>()
         @Bindable get
         set(value) {

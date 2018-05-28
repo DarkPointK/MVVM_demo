@@ -11,9 +11,6 @@ import android.view.ViewGroup
 import com.dpk.mvvm_iv.R
 import com.dpk.mvvm_iv.databinding.MainfragmentBinder
 
-/**
- * A placeholder fragment containing a simple view.
- */
 class MainActivityFragment : Fragment() {
     lateinit var mainImp: MainFragmentInterface
     lateinit var binding: MainfragmentBinder
