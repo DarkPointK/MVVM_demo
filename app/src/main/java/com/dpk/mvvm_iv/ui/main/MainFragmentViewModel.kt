@@ -40,7 +40,13 @@ class MainFragmentViewModel : BaseObservable() {
         }
     }
 
-    val base64 = ObservableField<NetBean.PostInspection>()
+    var base64 = ObservableField<NetBean.PostInspection>()
+        @Bindable get
+        set(value) {
+            field = value
+            inspection()
+        }
+
     var getInspectionBean = ObservableField<NetBean.GetInspection>()
         @Bindable get
         set(value) {
