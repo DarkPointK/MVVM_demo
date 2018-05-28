@@ -53,6 +53,10 @@ class MainFragmentViewModel : BaseObservable() {
             notifyPropertyChanged(BR.getInspectionBean)
         }
 
+    fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        listener = s.toString()
+    }
+
     fun inspection() {
         if (base64.get() != null) {
             ApiClient.inspection(base64.get()!!).compose(SwitchSchedulers.applySchedulers()).subscribe(

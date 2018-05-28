@@ -48,6 +48,7 @@
             android:gravity="center"
             android:hint="手动输入车牌"
             android:maxLength="8"
+            android:onTextChanged="@{vm::onTextChanged}"
             android:textColor="@color/white"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"

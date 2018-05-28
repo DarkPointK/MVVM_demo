@@ -25,9 +25,9 @@ class InspectionResultActivity : Fragment() {
 
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
-        if(!hidden){
+        if (!hidden) {
             if (arguments != null)
-                toast( arguments.getBoolean("status").toString())
+                toast(arguments.getBoolean("status").toString())
         }
     }
 
