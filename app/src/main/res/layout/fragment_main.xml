@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
-    <data>
+    <data class="MainfragmentBinder">
 
         <import type="android.view.View"/>
+
         <variable
             name="vm"
             type="com.dpk.mvvm_iv.ui.main.MainFragmentViewModel"/>
@@ -12,7 +13,9 @@
     <android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
@@ -44,7 +47,7 @@
             android:background="@color/deep_gray"
             android:gravity="center"
             android:hint="手动输入车牌"
-            android:maxLength="7"
+            android:maxLength="8"
             android:textColor="@color/white"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -61,30 +64,31 @@
             android:gravity="center"
             android:text="@{vm.loading?@string/iving:@string/ivfail}"
             android:textColor="@color/white"
-            visible="@{vm.loading}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.4"/>
+            app:layout_constraintVertical_bias="0.4"
+            bind:visible="@{vm.loading||!vm.issuccess}"/>
 
         <TextView
             android:id="@+id/btn_inspection"
             android:layout_width="330dp"
             android:layout_height="60dp"
             android:layout_marginTop="8dp"
-            android:textColor="@color/black"
             android:layout_weight="1"
-            tools:background="@color/white"
             android:background="@{vm.issuccess?@color/white:@color/red}"
             android:gravity="center"
-            tools:text="拍照检验"
+            android:onClick="@{vm::getIsOfficerVehicle}"
             android:text="@{vm.key?@string/iv:@string/ivc}"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.7"/>
+            app:layout_constraintVertical_bias="0.7"
+            tools:background="@color/white"
+            tools:text="拍照检验"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>
