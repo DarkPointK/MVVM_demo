@@ -1,86 +1,70 @@
 package com.dpk.mvvm_iv.ui.main
 
-import android.databinding.BaseObservable
-import android.databinding.Bindable
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
+import android.app.Application
+import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.MutableLiveData
 import android.view.View
-import com.android.databinding.library.baseAdapters.BR
 import com.dpk.mvvm_iv.model.ApiClient
 import com.dpk.mvvm_iv.model.NetBean
 import com.dpk.mvvm_iv.model.SwitchSchedulers
 
-class MainFragmentViewModel : BaseObservable() {
+class MainFragmentViewModel(application: Application) : AndroidViewModel(application) {
 
     //输入的车牌号
-    var listener = ""
-        @Bindable get
-        set(value) {
-            field = value
-            if (value.isNotEmpty())
-                key.set(true)
-            notifyPropertyChanged(BR.listener)
-        }
+    val listener = MutableLiveData<String>()
 
     //是否通过检验
-    var ispass = ObservableBoolean()
+    val ispass = MutableLiveData<Boolean>()
 
     //加载状态
-    var loading = ObservableBoolean()
+    val loading = MutableLiveData<Boolean>()
 
     //请求检验的方式
-    val key = ObservableBoolean(false)
+    val key = MutableLiveData<Boolean>()
 
     //是否完成检验
-    val issuccess = object : ObservableBoolean(true) {
-        override fun set(value: Boolean) {
-            super.set(value)
-            if (get() == value)
-                notifyChange()
-        }
-    }
+    val issuccess = MutableLiveData<Boolean>().apply { value = true }
 
-    var base64 = ObservableField<NetBean.PostInspection>()
-        @Bindable get
+    var base64 = MutableLiveData<NetBean.PostInspection>()
         set(value) {
             field = value
             inspection()
         }
 
-    var getInspectionBean = ObservableField<NetBean.GetInspection>()
-        @Bindable get
+    var getInspectionBean = MutableLiveData<NetBean.GetInspection>()
         set(value) {
             field = value
-            loading.set(false)
-            notifyPropertyChanged(BR.getInspectionBean)
+            loading.value = false
         }
 
     fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-        listener = s.toString()
+        listener.value = s.toString()
+        if (s.toString().isNotEmpty())
+            key.value = true
     }
 
     fun inspection() {
-        if (base64.get() != null) {
-            ApiClient.inspection(base64.get()!!).compose(SwitchSchedulers.applySchedulers()).subscribe(
-                    { getInspectionBean.set(it) },
-                    { issuccess.set(false) }
+        if (base64.value != null) {
+            ApiClient.inspection(base64.value!!).compose(SwitchSchedulers.applySchedulers()).subscribe(
+                    { getInspectionBean.value = it },
+                    { issuccess.value = false }
             )
         }
     }
 
     fun getIsOfficerVehicle(view: View) {
-        loading.set(true)
-        ApiClient.getIsOfficerVehicle(listener).compose(SwitchSchedulers.applySchedulers()).subscribe(
+        loading.value = true
+        ApiClient.getIsOfficerVehicle(listener.value!!).compose(SwitchSchedulers.applySchedulers()).subscribe(
                 {
-                    loading.set(false)
+                    loading.value = false
                     if (it.isSuccessful) {
-                        ispass.set(it.headers().get("isOfficerVehicle")?.toBoolean()!!)
-                        issuccess.set(true)
+                        ispass.value = it.headers().get("isOfficerVehicle")?.toBoolean()
+                        issuccess.value = true
                     }
                 },
                 {
-                    loading.set(false)
-                    issuccess.set(true)
+                    loading.value = false
+                    issuccess.value = true
                 }
         )
     }
