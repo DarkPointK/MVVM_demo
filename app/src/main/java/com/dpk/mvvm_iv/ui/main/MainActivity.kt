@@ -20,6 +20,11 @@ class MainActivity : AppCompatActivity(), MainActivityFragment.MainFragmentInter
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         supportFragmentManager.beginTransaction().hide(fragment1).commit()
+//        RxBus.toObserverable(Event::class.java,RxBus.ThreadMode.MAIN).subscribe({
+//            toast("111111")
+//            Log.d("111111","a")
+//        })
+//        RxBus.post(Event)
     }
 
 }

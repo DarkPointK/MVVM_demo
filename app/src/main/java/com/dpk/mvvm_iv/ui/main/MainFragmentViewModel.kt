@@ -12,16 +12,12 @@ class MainFragmentViewModel(application: Application) : AndroidViewModel(applica
 
     //输入的车牌号
     val listener = MutableLiveData<String>()
-
     //是否通过检验
     val ispass = MutableLiveData<Boolean>()
-
     //加载状态
     val loading = MutableLiveData<Boolean>()
-
     //请求检验的方式
     val key = MutableLiveData<Boolean>()
-
     //是否完成检验
     val issuccess = MutableLiveData<Boolean>().apply { value = true }
 
@@ -30,7 +26,6 @@ class MainFragmentViewModel(application: Application) : AndroidViewModel(applica
             field = value
             inspection()
         }
-
     var getInspectionBean = MutableLiveData<NetBean.GetInspection>()
         set(value) {
             field = value
@@ -54,7 +49,7 @@ class MainFragmentViewModel(application: Application) : AndroidViewModel(applica
 
     fun getIsOfficerVehicle(view: View) {
         loading.value = true
-        ApiClient.getIsOfficerVehicle(listener.value!!).compose(SwitchSchedulers.applySchedulers()).subscribe(
+        ApiClient.getIsOfficerVehicle(listener.value.toString()).compose(SwitchSchedulers.applySchedulers()).subscribe(
                 {
                     loading.value = false
                     if (it.isSuccessful) {

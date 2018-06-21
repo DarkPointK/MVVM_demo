@@ -8,9 +8,15 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClient : ApiInterface {
-    private val s = ""
+    private val s = "http://106.14.161.166:34567/"
 
-    val BASE_URL = ""
+
+    // 正式服
+//    public static final String BASE_URL = "https://ft.hfcsbc.com/";
+
+    // 测试服
+    //    public static final String BASE_URL = "https://hfcb.asuscomm.com/";
+    val BASE_URL = "https://temp.hfcsbc.com/"
 
     val instant = Retrofit.Builder()
             .baseUrl(BASE_URL)
